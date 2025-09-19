@@ -21,9 +21,9 @@ void rotateValues(List<int> values) {
   values[2] = temp;
 }
 
-int getCentury(int year) {
-  if (year <= 0) return -1;
-  return (year + 99) ~/ 100;
+String getCentury(int year) {
+  if (year <= 0) return 'Невалідний рік';
+  return ((year + 99) ~/ 100).toString();
 }
 
 int fullWeeks(int days) => days ~/ 7;
@@ -63,3 +63,17 @@ void main() {
   Map<String, int> money = coinsToMoney(5, 3, 2, 1);
   print([money['hryvnias'], money['kopiyky']]);
 }
+
+
+
+
+
+
+
+
+
+
+  // stdout.write('Введіть ....: ');
+  // String? name = stdin.readLineSync();
+  
+  // stdout.writeln('Привіт, $name!');

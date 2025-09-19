@@ -27,25 +27,26 @@ bool inCircle(double x, double y, double cx, double cy, double r) {
   return dist(x, y, cx, cy) <= r;
 }
 
-// 3. Температури
-int negTemps(List<int> arr) {
-  int k = 0;
-  for (int t in arr) {
-    if (t < 0) k++;
-  }
-  return k;
+// 3. Підрахувати середню температуру серед додатних
+double avgPositiveTemps(List<int> temps) {
+  int sum = 0;
+  int count = 0;
+
+  temps.where((t) => t > 0).forEach((t) {
+    sum += t;
+    count++;
+  });
+
+  return count > 0 ? sum / count : 0;
 }
 
-double avgPosTemps(List<int> arr) {
-  int k = 0;
-  int sum = 0;
-  for (int t in arr) {
-    if (t > 0) {
-      sum += t;
-      k++;
+// Функція, яка проходить по товарах і викликає callback, якщо ціна > 100
+void checkPrices(List<double> prices, void Function(double) onExpensive) {
+  for (var price in prices) {
+    if (price > 100) {
+      onExpensive(price); 
     }
   }
-  return k > 0 ? sum / k : 0;
 }
 
 void main() {
@@ -53,6 +54,9 @@ void main() {
   print(dist(0, 0, 3, 4));                
   print(inRect(3, 3, 1, 1, 5, 5));        
   print(inCircle(2, 2, 0, 0, 3));        
-  print(negTemps([-2, 5, 0, -7, 3]));     
-  print(avgPosTemps([-2, 5, 0, -7, 3]));  
+  print(avgPositiveTemps([-2, 5, 0, -7, 3]));  
+  List<double> prices = [49.9, 120.0, 15.5, 210.0, 99.9];
+  checkPrices(prices, (price) {
+    print("Товар за $price грн – запропонувати знижку!");
+  });
 }

@@ -10,7 +10,7 @@ void main() {
   // Загальний прибуток кожного магазину за тиждень
   List<int> shopSums =
       profit.map((week) => week.reduce((a, b) => a + b)).toList();
-  print("1) Прибуток кожного магазину: $shopSums");
+  print("Прибуток кожного магазину: $shopSums");
 
   // Загальний прибуток усіх магазинів по днях
   int days = profit[0].length;
@@ -20,36 +20,36 @@ void main() {
       daySums[d] += shop[d];
     }
   }
-  print("2) Прибуток по днях: $daySums");
+  print("Прибуток по днях: $daySums");
 
-  // Загальний прибуток за робочі дні (пн–пт)
+  // Загальний прибуток за робочі дні 
   int workSum = daySums.sublist(0, 5).reduce((a, b) => a + b);
-  print("3) Робочі дні = $workSum");
+  print("Робочі дні = $workSum");
 
   // Загальний прибуток за вихідні
   int weekendSum = daySums.sublist(5).reduce((a, b) => a + b);
-  print("4) Вихідні = $weekendSum");
+  print("Вихідні = $weekendSum");
 
-  // Максимальний прибуток у середу (індекс = 2)
+  // Максимальний прибуток у середу
   int maxWed = profit.map((shop) => shop[2]).reduce(max);
-  print("5) Макс. прибуток у середу: $maxWed");
+  print("Макс. прибуток у середу: $maxWed");
 
   // Усі прибутки >200
   List<int> more200 = profit.expand((shop) => shop.where((x) => x > 200)).toList();
-  print("6) Значення >200: $more200");
+  print("Значення >200: $more200");
 
   // Відсортувати кожен тиждень за зростанням
   for (var shop in profit) {
     shop.sort();
   }
-  print("7) Кожен тиждень відсортований: $profit");
+  print("Кожен тиждень відсортований: $profit");
 
   // Відсортувати тижні за спаданням макс. елемента
   profit.sort((a, b) => b.reduce(max).compareTo(a.reduce(max)));
-  print("8a) За спаданням макс. елемента: $profit");
+  print("За спаданням макс. елемента: $profit");
 
   // Відсортувати тижні за спаданням суми
   profit.sort((a, b) =>
       b.reduce((s, x) => s + x).compareTo(a.reduce((s, x) => s + x)));
-  print("8b) За спаданням суми: $profit");
+  print("За спаданням суми: $profit");
 }

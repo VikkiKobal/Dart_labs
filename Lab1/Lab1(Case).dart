@@ -39,6 +39,9 @@ double servicePayment(String service, double amount) {
     case 'internet':
       rate = 150.0; 
       break;
+    case 'universityEnterance':
+      rate = 200.0; 
+      break;  
     default:
       return -1; 
   }
